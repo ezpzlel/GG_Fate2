@@ -1,0 +1,16 @@
+C:\Users\Admin\Documents\0000AFATE\GG Fate2\GG Fate2\bin\Debug\GG Fate2.exe.config
+C:\Users\Admin\Documents\0000AFATE\GG Fate2\GG Fate2\bin\Debug\GG Fate2.exe
+C:\Users\Admin\Documents\0000AFATE\GG Fate2\GG Fate2\bin\Debug\GG Fate2.pdb
+C:\Users\Admin\Documents\0000AFATE\GG Fate2\GG Fate2\bin\Debug\LeagueSharp.Common.dll
+C:\Users\Admin\Documents\0000AFATE\GG Fate2\GG Fate2\bin\Debug\LeagueSharp.dll
+C:\Users\Admin\Documents\0000AFATE\GG Fate2\GG Fate2\bin\Debug\SharpDX.dll
+C:\Users\Admin\Documents\0000AFATE\GG Fate2\GG Fate2\bin\Debug\SharpDX.Direct3D9.dll
+C:\Users\Admin\Documents\0000AFATE\GG Fate2\GG Fate2\bin\Debug\LeagueSharp.Data.dll
+C:\Users\Admin\Documents\0000AFATE\GG Fate2\GG Fate2\bin\Debug\clipper_library.dll
+C:\Users\Admin\Documents\0000AFATE\GG Fate2\GG Fate2\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Admin\Documents\0000AFATE\GG Fate2\GG Fate2\bin\Debug\LeagueSharp.Common.pdb
+C:\Users\Admin\Documents\0000AFATE\GG Fate2\GG Fate2\bin\Debug\LeagueSharp.Data.pdb
+C:\Users\Admin\Documents\0000AFATE\GG Fate2\GG Fate2\bin\Debug\clipper_library.pdb
+C:\Users\Admin\Documents\0000AFATE\GG Fate2\GG Fate2\obj\Debug\GG Fate2.csprojResolveAssemblyReference.cache
+C:\Users\Admin\Documents\0000AFATE\GG Fate2\GG Fate2\obj\Debug\GG Fate2.exe
+C:\Users\Admin\Documents\0000AFATE\GG Fate2\GG Fate2\obj\Debug\GG Fate2.pdb
