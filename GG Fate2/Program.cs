@@ -20,7 +20,7 @@
 
             Logic.LoadAssembly();
 
-            Game.PrintChat("~ GG Fate 2 ~");
+            Game.PrintChat("~ GG Fate 2 ~ build v.00.16");
         }
     }
 }

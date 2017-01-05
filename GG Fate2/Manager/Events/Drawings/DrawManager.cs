@@ -14,16 +14,20 @@
         {
             if (!Me.IsDead && !MenuGUI.IsShopOpen && !MenuGUI.IsChatOpen && !MenuGUI.IsScoreboardOpen)
             {
-                if (R.IsReady())
+                if (R.IsReadyPerfectly())
                 {
                     Render.Circle.DrawCircle(Me.Position, R.Range, Color.FromArgb(19, 130, 234), 1);
                 }
 
-                //EndScene
+                // Block AA last-hit range
+
+                Render.Circle.DrawCircle(Me.Position, W.Range + 300, Color.FromArgb(111, 98, 234), 1);
+
+                // EndScene
 
                 if (R.IsReadyPerfectly())
                 {
-                    Utility.DrawCircle(ObjectManager.Player.Position, 5500, Color.PaleGreen, 2, 23, true);
+                    Utility.DrawCircle(Me.Position, 5500, Color.FromArgb(19, 130, 234), 1);
                 }
             }
 

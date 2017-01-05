@@ -6,32 +6,9 @@
 
     internal class CardPicker : Logic
     {
-        internal static bool UsingKey(string itemName)
-        {
-            return Menu.Item(itemName).GetValue<KeyBind>().Active;
-        }
-
         internal static bool BlueKey { get { return UsingKey("Picker.b"); } }
 
         internal static bool RedKey { get { return UsingKey("Picker.r"); } }
-
-        internal static bool GoldKey { get { return UsingKey("Picker.g"); } }
-
-        internal static void Init()
-        {
-            if (BlueKey)
-            {
-                GiveCard(Cards.Blue);
-            }
-            else if (RedKey)
-            {
-                GiveCard(Cards.Red);
-            }
-            else if (GoldKey)
-            {
-                GiveCard(Cards.Yellow);
-            }
-        }
 
         internal static void GiveCard(Cards card)
         {
@@ -48,6 +25,23 @@
                         break;
                     }
             }
+        }
+
+        internal static void Init()
+        {
+            if (BlueKey)
+            {
+                GiveCard(Cards.Blue);
+            }
+            else if (RedKey)
+            {
+                GiveCard(Cards.Red);
+            }
+        }
+
+        internal static bool UsingKey(string itemName)
+        {
+            return Menu.Item(itemName).GetValue<KeyBind>().Active;
         }
     }
 }

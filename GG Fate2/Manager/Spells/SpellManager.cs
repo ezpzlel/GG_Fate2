@@ -13,7 +13,7 @@
             { MinHitChance = HitChance.High };
 
             W = new Spell(SpellSlot.W,
-                Orbwalking.GetRealAutoAttackRange(Me),
+                Orbwalking.GetRealAutoAttackRange(null) + 65,
                     TargetSelector.DamageType.Magical);
 
             E = new Spell(SpellSlot.E);

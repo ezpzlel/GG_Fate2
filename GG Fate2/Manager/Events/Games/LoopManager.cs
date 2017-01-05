@@ -20,6 +20,8 @@
 
             CardPicker.Init();
 
+            SpellQ.Init();
+
             switch (Orbwalker.ActiveMode)
             {
                 case OrbwalkingMode.Combo:
@@ -27,10 +29,11 @@
                     break;
 
                 case OrbwalkingMode.Mixed:
-                    Harass.Init();
+                    Shuffle.Init();
                     break;
 
                 case OrbwalkingMode.LaneClear:
+                    Shuffle.Init();
                     Clear.Init();
                     break;
             }

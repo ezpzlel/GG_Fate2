@@ -2,6 +2,7 @@
 {
     using LeagueSharp;
     using LeagueSharp.Common;
+    using SebbyLib;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -9,7 +10,6 @@
     using Utils;
     using static Utils.CardSelector;
     using static Vars.VarsDecla;
-    using OktwCommon = SebbyLib.OktwCommon;
 
     //Simp
     using Orbwalking = Utils.Orbwalking;
@@ -67,6 +67,26 @@
                                     {
                                         Me.IssueOrder(GameObjectOrder.AttackUnit, minionHarass);
                                     }
+                                }
+                            }
+                        }
+
+                        if (Status == SelectStatus.Selecting)
+                        {
+                            var tHarass = TargetSelector.GetTarget(W.Range, W.DamageType);
+
+                            if (tHarass.Check(W.Range + 300))
+                            {
+                                Args.Process = false;
+                            }
+
+                            if (tHarass.Check(W.Range))
+                            {
+                                LockCard();
+
+                                if (Orbwalking.CanAttack())
+                                {
+                                    Me.IssueOrder(GameObjectOrder.AttackUnit, tHarass);
                                 }
                             }
                         }

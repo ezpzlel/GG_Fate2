@@ -60,6 +60,9 @@
       <HintPath>C:\Program Files (x86)\8ZTb6qGSx\References\LeagueSharp.Common.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
+    <Reference Include="SebbyLib">
+      <HintPath>C:\Program Files (x86)\8ZTb6qGSx\References\SebbyLib.dll</HintPath>
+    </Reference>
     <Reference Include="SharpDX">
       <HintPath>C:\Program Files (x86)\8ZTb6qGSx\References\SharpDX.dll</HintPath>
     </Reference>
@@ -84,7 +87,8 @@
     <Compile Include="Manager\Events\Games\Modes\CardPicker.cs" />
     <Compile Include="Manager\Events\Games\Modes\Clear.cs" />
     <Compile Include="Manager\Events\Games\Modes\Combo.cs" />
-    <Compile Include="Manager\Events\Games\Modes\Harass.cs" />
+    <Compile Include="Manager\Events\Games\Modes\Shuffle.cs" />
+    <Compile Include="Manager\Events\Games\Modes\SpellQ.cs" />
     <Compile Include="Manager\Events\Gapcloser\AntiGapcloserManager.cs" />
     <Compile Include="Manager\Events\Interrupt\InterruptManager.cs" />
     <Compile Include="Manager\Events\SpellCast\SpellCastManager.cs" />
@@ -92,8 +96,6 @@
     <Compile Include="Manager\Spells\SpellManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SebbyLib\Cache.cs" />
-    <Compile Include="SebbyLib\OktwCommon.cs" />
     <Compile Include="Utils\CardSelector.cs" />
     <Compile Include="Utils\CheckStatus.cs" />
     <Compile Include="Utils\DamageCalculate.cs" />

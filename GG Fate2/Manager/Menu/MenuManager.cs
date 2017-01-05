@@ -9,7 +9,7 @@
     {
         internal static void Init()
         {
-            Menu = new Menu("GG_Fate", "GG_Fate", true);
+            Menu = new Menu("GG_Fate", "GG_Fate", true).SetFontStyle(FontStyle.Bold, SharpDX.Color.BlanchedAlmond);
 
             var targetSelectMenu = Menu.AddSubMenu(new Menu("Target Selector", "Target Selector"));
             {
@@ -21,6 +21,13 @@
                 Orbwalker = new Orbwalking.Orbwalker(orbMenu);
             }
 
+            var QMode = Menu.AddSubMenu(new Menu("Q", "Q"));
+            {
+                QMode.AddItem(new MenuItem("menu.q", "Q Spell").SetFontStyle(FontStyle.Bold, SharpDX.Color.BlueViolet));
+
+                QMode.AddItem(new MenuItem("Q.Mode", "Q Caster").SetValue(new KeyBind("A".ToCharArray()[0], KeyBindType.Press)));
+            }
+
             var Picker = Menu.AddSubMenu(new Menu("W", "W"));
             {
                 Picker.AddItem(new MenuItem("menu.pick", "Pick A Card").SetFontStyle(FontStyle.Bold, SharpDX.Color.BlueViolet));
@@ -28,8 +35,6 @@
                 Picker.AddItem(new MenuItem("Picker.b", "B").SetValue(new KeyBind("8".ToCharArray()[0], KeyBindType.Press)));
 
                 Picker.AddItem(new MenuItem("Picker.r", "R").SetValue(new KeyBind("9".ToCharArray()[0], KeyBindType.Press)));
-
-                Picker.AddItem(new MenuItem("Picker.g", "G").SetValue(new KeyBind("0".ToCharArray()[0], KeyBindType.Press)));
             }
 
             var miscMenu = Menu.AddSubMenu(new Menu("Misc", "Misc"));

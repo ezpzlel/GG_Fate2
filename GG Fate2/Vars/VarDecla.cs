@@ -2,13 +2,11 @@
 {
     using LeagueSharp;
     using LeagueSharp.Common;
+    using System;
+    using System.Linq;
 
     public static class VarsDecla
     {
-        public static bool MeBlue => ObjectManager.Player.HasBuff("bluecardpreattack");
-        public static bool MeRed => ObjectManager.Player.HasBuff("redcardpreattack");
-        public static bool MeGold => ObjectManager.Player.HasBuff("goldcardpreattack");
-
         public static string MeCard
         {
             get
@@ -22,6 +20,10 @@
                 return "none";
             }
         }
+
+        public static bool MeBlue => ObjectManager.Player.HasBuff("bluecardpreattack");
+        public static bool MeGold => ObjectManager.Player.HasBuff("goldcardpreattack");
+        public static bool MeRed => ObjectManager.Player.HasBuff("redcardpreattack");
 
         public static float GetRealAutoAttackRange(this AttackableUnit unit, AttackableUnit target,
             int autoAttackRange)
@@ -38,6 +40,17 @@
                    spell.Instance.State != SpellState.Disabled && spell.Instance.State != SpellState.NoMana &&
                    spell.Instance.State != SpellState.NotLearned && spell.Instance.State != SpellState.Surpressed &&
                    spell.Instance.State != SpellState.Unknown && spell.Instance.State == SpellState.Ready;
+        }
+
+        public static float GetStunDuration(this Obj_AI_Base target)
+        {
+            return (target.Buffs.Where(b => b.IsActive && Game.Time < b.EndTime &&
+                (b.Type == BuffType.Charm ||
+                b.Type == BuffType.Knockback ||
+                b.Type == BuffType.Stun ||
+                b.Type == BuffType.Suppression ||
+                b.Type == BuffType.Snare)).Aggregate(0f, (current, buff) => Math.Max(current, buff.EndTime)) -
+                Game.Time) * 1000;
         }
     }
 }
