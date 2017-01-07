@@ -21,6 +21,8 @@
             }
         }
 
+        public static bool MeTracker => ObjectManager.Player.HasBuff("pickacard_tracker");
+        public static bool MeGate => ObjectManager.Player.HasBuff("gate");
         public static bool MeBlue => ObjectManager.Player.HasBuff("bluecardpreattack");
         public static bool MeGold => ObjectManager.Player.HasBuff("goldcardpreattack");
         public static bool MeRed => ObjectManager.Player.HasBuff("redcardpreattack");

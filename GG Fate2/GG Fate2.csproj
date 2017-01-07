@@ -80,6 +80,7 @@
   <ItemGroup>
     <Compile Include="Logic.cs" />
     <Compile Include="Manager\Events\Attack\BeforeAttackManager.cs" />
+    <Compile Include="Manager\Events\Bindings\MouseManager.cs" />
     <Compile Include="Manager\Events\Drawings\DrawManager.cs" />
     <Compile Include="Manager\Events\EventManager.cs" />
     <Compile Include="Manager\Events\Games\LoopManager.cs" />
@@ -87,7 +88,6 @@
     <Compile Include="Manager\Events\Games\Modes\CardPicker.cs" />
     <Compile Include="Manager\Events\Games\Modes\Clear.cs" />
     <Compile Include="Manager\Events\Games\Modes\Combo.cs" />
-    <Compile Include="Manager\Events\Games\Modes\Shuffle.cs" />
     <Compile Include="Manager\Events\Games\Modes\SpellQ.cs" />
     <Compile Include="Manager\Events\Gapcloser\AntiGapcloserManager.cs" />
     <Compile Include="Manager\Events\Interrupt\InterruptManager.cs" />

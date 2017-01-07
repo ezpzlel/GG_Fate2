@@ -29,11 +29,9 @@
                     break;
 
                 case OrbwalkingMode.Mixed:
-                    Shuffle.Init();
                     break;
 
                 case OrbwalkingMode.LaneClear:
-                    Shuffle.Init();
                     Clear.Init();
                     break;
             }

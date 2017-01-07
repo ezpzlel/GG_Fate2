@@ -11,6 +11,7 @@
         internal static void Init()
         {
             Game.OnUpdate += LoopManager.Init;
+            Game.OnWndProc += MouseManager.Init;
             Orbwalking.BeforeAttack += BeforeAttackManager.Init;
             AntiGapcloser.OnEnemyGapcloser += AntiGapcloserManager.Init;
             Interrupter2.OnInterruptableTarget += InterruptManager.Init;

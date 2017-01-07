@@ -3,6 +3,7 @@
     using LeagueSharp;
     using LeagueSharp.Common;
     using SebbyLib;
+    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -49,15 +50,13 @@
 
                         if (MeCard != "none" && MeRed)
                         {
-                            var aaRange = Orbwalking.GetRealAutoAttackRange(Me);
-
                             var target = HeroManager.Enemies.FirstOrDefault(
-                                t => !t.IsValidTarget(aaRange) && t.IsValidTarget(aaRange + 200));
+                                 t => !t.IsValidTarget(W.Range) && t.IsValidTarget(W.Range + 200));
 
                             if (target != null)
                             {
                                 var minionHarass = ObjectManager.Get<Obj_AI_Minion>().FirstOrDefault(
-                                    m => m.IsValidTarget(aaRange) && m.Distance(target) < 200);
+                                    m => m.IsValidTarget(W.Range) && m.Distance(target) < 200);
 
                                 if (minionHarass != null)
                                 {
@@ -71,11 +70,13 @@
                             }
                         }
 
+                        //
+
                         if (Status == SelectStatus.Selecting)
                         {
                             var tHarass = TargetSelector.GetTarget(W.Range, W.DamageType);
 
-                            if (tHarass.Check(W.Range + 300))
+                            if (tHarass.Check(W.Range + 200))
                             {
                                 Args.Process = false;
                             }
@@ -84,7 +85,27 @@
                             {
                                 LockCard();
 
-                                if (Orbwalking.CanAttack())
+                                if (Orbwalking.CanAttack() && MeCard != "none")
+                                {
+                                    Me.IssueOrder(GameObjectOrder.AttackUnit, tHarass);
+                                }
+                            }
+                        }
+
+                        if (Status == SelectStatus.Ready)
+                        {
+                            var tHarass = TargetSelector.GetTarget(W.Range, W.DamageType);
+
+                            if (tHarass.Check(W.Range + 200))
+                            {
+                                Args.Process = false;
+                            }
+
+                            if (tHarass.Check(W.Range))
+                            {
+                                StartSelecting(Cards.First);
+
+                                if (Orbwalking.CanAttack() && MeCard != "none")
                                 {
                                     Me.IssueOrder(GameObjectOrder.AttackUnit, tHarass);
                                 }
@@ -116,6 +137,46 @@
                             if (Orbwalking.CanAttack())
                             {
                                 Me.IssueOrder(GameObjectOrder.AttackUnit, sbire.Key);
+                            }
+                        }
+
+                        if (Status == SelectStatus.Selecting)
+                        {
+                            var tHarass = TargetSelector.GetTarget(W.Range, W.DamageType);
+
+                            if (tHarass.Check(W.Range + 200))
+                            {
+                                Args.Process = false;
+                            }
+
+                            if (tHarass.Check(W.Range))
+                            {
+                                LockCard();
+
+                                if (Orbwalking.CanAttack() && MeCard != "none")
+                                {
+                                    Me.IssueOrder(GameObjectOrder.AttackUnit, tHarass);
+                                }
+                            }
+                        }
+
+                        if (Status == SelectStatus.Ready)
+                        {
+                            var tHarass = TargetSelector.GetTarget(W.Range, W.DamageType);
+
+                            if (tHarass.Check(W.Range + 200))
+                            {
+                                Args.Process = false;
+                            }
+
+                            if (tHarass.Check(W.Range))
+                            {
+                                StartSelecting(Cards.First);
+
+                                if (Orbwalking.CanAttack() && MeCard != "none")
+                                {
+                                    Me.IssueOrder(GameObjectOrder.AttackUnit, tHarass);
+                                }
                             }
                         }
 

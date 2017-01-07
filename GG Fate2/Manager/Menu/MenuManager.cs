@@ -9,7 +9,7 @@
     {
         internal static void Init()
         {
-            Menu = new Menu("GG_Fate", "GG_Fate", true).SetFontStyle(FontStyle.Bold, SharpDX.Color.BlanchedAlmond);
+            Menu = new Menu("GG_Fate", "GG_Fate", true).SetFontStyle(FontStyle.Bold, SharpDX.Color.Firebrick);
 
             var targetSelectMenu = Menu.AddSubMenu(new Menu("Target Selector", "Target Selector"));
             {
@@ -23,14 +23,14 @@
 
             var QMode = Menu.AddSubMenu(new Menu("Q", "Q"));
             {
-                QMode.AddItem(new MenuItem("menu.q", "Q Spell").SetFontStyle(FontStyle.Bold, SharpDX.Color.BlueViolet));
+                QMode.AddItem(new MenuItem("menu.q", "Q Spell").SetFontStyle(FontStyle.Bold, SharpDX.Color.Firebrick));
 
                 QMode.AddItem(new MenuItem("Q.Mode", "Q Caster").SetValue(new KeyBind("A".ToCharArray()[0], KeyBindType.Press)));
             }
 
             var Picker = Menu.AddSubMenu(new Menu("W", "W"));
             {
-                Picker.AddItem(new MenuItem("menu.pick", "Pick A Card").SetFontStyle(FontStyle.Bold, SharpDX.Color.BlueViolet));
+                Picker.AddItem(new MenuItem("menu.pick", "Pick A Card").SetFontStyle(FontStyle.Bold, SharpDX.Color.Firebrick));
 
                 Picker.AddItem(new MenuItem("Picker.b", "B").SetValue(new KeyBind("8".ToCharArray()[0], KeyBindType.Press)));
 
