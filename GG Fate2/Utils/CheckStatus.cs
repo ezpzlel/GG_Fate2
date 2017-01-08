@@ -338,5 +338,22 @@
                    (damageType == TargetSelector.DamageType.Physical ? target.PhysicalShield : target.MagicalShield) <
                    calculatedDamage - 2;
         }
+
+        public static float GetRealAutoAttackRange(this AttackableUnit unit, AttackableUnit target,
+            int autoAttackRange)
+        {
+            var result = autoAttackRange + unit.BoundingRadius;
+            if (target.IsValidTarget())
+                return result + target.BoundingRadius;
+            return result;
+        }
+
+        public static bool IsReadyPerfectly(this Spell spell)
+        {
+            return spell != null && spell.Slot != SpellSlot.Unknown && spell.Instance.State != SpellState.Cooldown &&
+                   spell.Instance.State != SpellState.Disabled && spell.Instance.State != SpellState.NoMana &&
+                   spell.Instance.State != SpellState.NotLearned && spell.Instance.State != SpellState.Surpressed &&
+                   spell.Instance.State != SpellState.Unknown && spell.Instance.State == SpellState.Ready;
+        }
     }
 }

@@ -4,9 +4,11 @@
     using LeagueSharp.Common;
     using System.Linq;
     using Utils;
-    using static Utils.CardSelector;
-    using static Vars.VarsDecla;
+
     using OrbwalkingMode = Utils.Orbwalking.OrbwalkingMode;
+
+    using static Vars.VarsDecla;
+    using static Utils.CardSelector;
 
     internal class Automated : Logic
     {
@@ -14,18 +16,18 @@
         {
             if (Q.IsReadyPerfectly())
             {
-                foreach (var t in HeroManager.Enemies.Where(x => x.Check(Q.Range)))
+                foreach (var target in HeroManager.Enemies.Where(t => t.Check(Q.Range)))
                 {
-                    foreach (var buff in t.Buffs.Where(b => b.Type == BuffType.Stun
+                    foreach (var buff in target.Buffs.Where(b => b.Type == BuffType.Stun
                         || b.Type == BuffType.Snare
                             || b.Type == BuffType.Charm
                                 || b.Type == BuffType.Suppression
                                     || b.Type == BuffType.Knockup
-                    || t.IsChannelingImportantSpell()))
+                    || target.IsChannelingImportantSpell()))
                     {
-                        if ((Me.Distance(t.Position) / (Q.Speed + Q.Delay)) < (buff.EndTime - Game.Time) + 0.15)
+                        if ((Me.Distance(target.Position) / (Q.Speed + Q.Delay)) < (buff.EndTime - Game.Time) + REACTIME)
                         {
-                            var prediction = Q.GetPrediction(t);
+                            var prediction = Q.GetPrediction(target);
 
                             if (prediction.Hitchance >= Q.MinHitChance)
                             {
@@ -38,7 +40,7 @@
 
             if (Orbwalker.ActiveMode == OrbwalkingMode.None)
             {
-                foreach (var t in HeroManager.Enemies.Where(x => x.IsValidTarget(W.Range - 200) && x != null))
+                foreach (var t in HeroManager.Enemies.Where(x => x.Check(350)))
                 {
                     if (W.IsReadyPerfectly() && Status == SelectStatus.Ready)
                     {

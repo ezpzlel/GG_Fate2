@@ -14,7 +14,7 @@
             {
                 var lineFarm = MinionCache.GetMinions(Me.ServerPosition, Q.Range);
 
-                if (lineFarm.Any() && lineFarm.Count >= 2)
+                if (lineFarm.Any() && lineFarm.Count >= 3)
                 {
                     var minionPos = lineFarm.Select(x => x.Position.To2D()).ToList();
 

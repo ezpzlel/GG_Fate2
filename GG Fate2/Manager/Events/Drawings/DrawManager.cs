@@ -58,7 +58,7 @@
                     foreach (var buff in t.Buffs.Where(b => (b.Type == BuffType.Slow && t.MoveSpeed <= 250) || b.Type == BuffType.Stun || b.Type == BuffType.Snare
                     || b.Type == BuffType.Charm || b.Type == BuffType.Suppression || b.Type == BuffType.Knockup || t.IsChannelingImportantSpell()))
                     {
-                        if ((Me.Distance(t.Position) / (Q.Speed + Q.Delay)) < (buff.EndTime - Game.Time) + 0.15)
+                        if ((Me.Distance(t.Position) / (Q.Speed + Q.Delay)) < (buff.EndTime - Game.Time) + REACTIME)
                         {
                             Render.Circle.DrawCircle(t.Position, 75, Color.DodgerBlue);
                             Drawing.DrawLine(Drawing.WorldToScreen(t.Position), Drawing.WorldToScreen(Me.Position), 1, Color.DodgerBlue);

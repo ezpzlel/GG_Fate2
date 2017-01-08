@@ -2,7 +2,6 @@
 {
     using LeagueSharp.Common;
     using Utils;
-    using Vars;
     using static Utils.Orbwalking;
 
     internal class SpellQ : Logic

@@ -24,6 +24,8 @@
             {
                 case OrbwalkingMode.Combo:
                     {
+                        var targetToGold = TargetSelector.GetTarget(W.Range, W.DamageType);
+
                         if (!OktwCommon.CollisionYasuo(Me.ServerPosition, Args.Target.Position))
                         {
                             Args.Process = Status != SelectStatus.Selecting && Utils.TickCount - LastWSent > 300;
@@ -31,9 +33,7 @@
 
                         if (MeGold)
                         {
-                            var targetToGold = TargetSelector.GetTarget(W.Range, W.DamageType);
-
-                            if (targetToGold.IsValidTarget(W.Range) && CheckStatus.IsBlockingGold(targetToGold))
+                            if (targetToGold.Check(W.Range) && CheckStatus.IsBlockingGold(targetToGold))
                             {
                                 Args.Process = false;
                             }
@@ -43,68 +43,51 @@
                     }
                 case OrbwalkingMode.Mixed:
                     {
+                        var targetMixed = TargetSelector.GetTarget(W.Range + 200, W.DamageType);
+
                         if (OktwCommon.CollisionYasuo(Me.ServerPosition, Args.Target.Position))
                         {
                             Args.Process = false;
                         }
 
-                        /*if (MeCard != "none" && MeRed)
+                        if (Status == SelectStatus.Ready || Status == SelectStatus.Selecting)
                         {
-                            var target = HeroManager.Enemies.FirstOrDefault(t => t.Check(W.Range + 300));
-
-                            if (target != null)
-                            {
-                                var minionToHit = ObjectManager.Get<Obj_AI_Minion>().LastOrDefault(
-                                m => m.IsValidTarget(W.Range) && m.Distance(target) < 300);
-
-                                if (minionToHit != null)
-                                {
-                                    if (Orbwalking.CanAttack())
-                                    {
-                                        Orbwalker.ForceTarget(minionToHit);
-                                    }
-                                }
-                            }
-                        }*/
-
-                        if (Status == SelectStatus.Selecting)
-                        {
-                            var tHarass = TargetSelector.GetTarget(W.Range, W.DamageType);
-
-                            if (tHarass.Check(W.Range + 200))
+                            if (targetMixed.Check(W.Range + 200))
                             {
                                 Args.Process = false;
-                            }
-
-                            if (tHarass.Check(W.Range - 30))
-                            {
-                                LockCard();
-
-                                if (Orbwalking.CanAttack() && MeCard != "none")
-                                {
-                                    Me.IssueOrder(GameObjectOrder.AttackUnit, tHarass);
-                                }
                             }
                         }
 
-                        if (Status == SelectStatus.Ready)
+                        switch (Status)
                         {
-                            var tHarass = TargetSelector.GetTarget(W.Range, W.DamageType);
-
-                            if (tHarass.Check(W.Range + 200))
-                            {
-                                Args.Process = false;
-                            }
-
-                            if (tHarass.Check(W.Range - 30))
-                            {
-                                StartSelecting(Cards.First);
-
-                                if (Orbwalking.CanAttack() && MeCard != "none")
+                            case SelectStatus.Ready:
                                 {
-                                    Me.IssueOrder(GameObjectOrder.AttackUnit, tHarass);
+                                    if (targetMixed.Check(W.Range))
+                                    {
+                                        StartSelecting(Cards.First);
+
+                                        if (MeAny && Orbwalking.CanAttack())
+                                        {
+                                            Me.IssueOrder(GameObjectOrder.AttackUnit, targetMixed);
+                                        }
+                                    }
+
+                                    break;
                                 }
-                            }
+                            case SelectStatus.Selecting:
+                                {
+                                    if (targetMixed.Check(W.Range))
+                                    {
+                                        LockCard();
+
+                                        if (MeAny && Orbwalking.CanAttack())
+                                        {
+                                            Me.IssueOrder(GameObjectOrder.AttackUnit, targetMixed);
+                                        }
+                                    }
+
+                                    break;
+                                }
                         }
 
                         break;
@@ -132,46 +115,6 @@
                             if (Orbwalking.CanAttack())
                             {
                                 Me.IssueOrder(GameObjectOrder.AttackUnit, sbire.Key);
-                            }
-                        }
-
-                        if (Status == SelectStatus.Selecting)
-                        {
-                            var tHarass = TargetSelector.GetTarget(W.Range, W.DamageType);
-
-                            if (tHarass.Check(W.Range + 200))
-                            {
-                                Args.Process = false;
-                            }
-
-                            if (tHarass.Check(W.Range - 30))
-                            {
-                                LockCard();
-
-                                if (Orbwalking.CanAttack() && MeCard != "none")
-                                {
-                                    Me.IssueOrder(GameObjectOrder.AttackUnit, tHarass);
-                                }
-                            }
-                        }
-
-                        if (Status == SelectStatus.Ready)
-                        {
-                            var tHarass = TargetSelector.GetTarget(W.Range, W.DamageType);
-
-                            if (tHarass.Check(W.Range + 200))
-                            {
-                                Args.Process = false;
-                            }
-
-                            if (tHarass.Check(W.Range - 30))
-                            {
-                                StartSelecting(Cards.First);
-
-                                if (Orbwalking.CanAttack() && MeCard != "none")
-                                {
-                                    Me.IssueOrder(GameObjectOrder.AttackUnit, tHarass);
-                                }
                             }
                         }
 
