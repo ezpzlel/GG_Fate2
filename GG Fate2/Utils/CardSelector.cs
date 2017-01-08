@@ -77,10 +77,7 @@
         {
             if (Status == SelectStatus.Selecting)
             {
-                if (Utils.TickCount - LastWSent > 170 + Game.Ping / 2)
-                {
-                    ObjectManager.Player.Spellbook.CastSpell(SpellSlot.W, ObjectManager.Player);
-                }
+                ObjectManager.Player.Spellbook.CastSpell(SpellSlot.W, ObjectManager.Player);
             }
         }
 

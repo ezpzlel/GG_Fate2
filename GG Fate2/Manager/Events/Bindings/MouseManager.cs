@@ -11,21 +11,23 @@
     {
         internal static void Init(WndEventArgs Args)
         {
-            if (!Me.IsDead
-                && !MenuGUI.IsShopOpen
-                && !MenuGUI.IsChatOpen
-                && !MenuGUI.IsScoreboardOpen
-                && !MeGate
-                && !Me.IsRecalling()
-                && (Orbwalker.ActiveMode == OrbwalkingMode.Mixed ||
-                Orbwalker.ActiveMode == OrbwalkingMode.LaneClear))
+            if (Me.IsDead
+                || MenuGUI.IsShopOpen
+                || MenuGUI.IsChatOpen
+                || MenuGUI.IsScoreboardOpen
+                || MeGate
+                || Me.IsRecalling()
+                || (Orbwalker.ActiveMode != OrbwalkingMode.Mixed &&
+                Orbwalker.ActiveMode != OrbwalkingMode.LaneClear))
             {
-                if (Args.Msg == (ulong)WindowsMessages.WM_LBUTTONDOWN)
+                return;
+            }
+
+            if (Args.Msg == (ulong)WindowsMessages.WM_LBUTTONDOWN)
+            {
+                if (Status == SelectStatus.Ready)
                 {
-                    if (Status == SelectStatus.Ready)
-                    {
-                        RotateCards();
-                    }
+                    RotateCards();
                 }
             }
         }

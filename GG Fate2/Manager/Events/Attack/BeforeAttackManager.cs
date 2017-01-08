@@ -29,7 +29,7 @@
                             Args.Process = Status != SelectStatus.Selecting && Utils.TickCount - LastWSent > 300;
                         }
 
-                        if (MeCard != "none" && MeGold)
+                        if (MeGold)
                         {
                             var targetToGold = TargetSelector.GetTarget(W.Range, W.DamageType);
 
@@ -48,29 +48,24 @@
                             Args.Process = false;
                         }
 
-                        if (MeCard != "none" && MeRed)
+                        /*if (MeCard != "none" && MeRed)
                         {
-                            var target = HeroManager.Enemies.FirstOrDefault(
-                                 t => !t.IsValidTarget(W.Range) && t.IsValidTarget(W.Range + 200));
+                            var target = HeroManager.Enemies.FirstOrDefault(t => t.Check(W.Range + 300));
 
                             if (target != null)
                             {
-                                var minionHarass = ObjectManager.Get<Obj_AI_Minion>().FirstOrDefault(
-                                    m => m.IsValidTarget(W.Range) && m.Distance(target) < 200);
+                                var minionToHit = ObjectManager.Get<Obj_AI_Minion>().LastOrDefault(
+                                m => m.IsValidTarget(W.Range) && m.Distance(target) < 300);
 
-                                if (minionHarass != null)
+                                if (minionToHit != null)
                                 {
-                                    Args.Process = false;
-
                                     if (Orbwalking.CanAttack())
                                     {
-                                        Me.IssueOrder(GameObjectOrder.AttackUnit, minionHarass);
+                                        Orbwalker.ForceTarget(minionToHit);
                                     }
                                 }
                             }
-                        }
-
-                        //
+                        }*/
 
                         if (Status == SelectStatus.Selecting)
                         {
@@ -81,7 +76,7 @@
                                 Args.Process = false;
                             }
 
-                            if (tHarass.Check(W.Range))
+                            if (tHarass.Check(W.Range - 30))
                             {
                                 LockCard();
 
@@ -101,7 +96,7 @@
                                 Args.Process = false;
                             }
 
-                            if (tHarass.Check(W.Range))
+                            if (tHarass.Check(W.Range - 30))
                             {
                                 StartSelecting(Cards.First);
 
@@ -116,7 +111,7 @@
                     }
                 case OrbwalkingMode.LaneClear:
                     {
-                        if (MeCard != "none" && MeRed)
+                        if (MeRed)
                         {
                             Args.Process = false;
 
@@ -149,7 +144,7 @@
                                 Args.Process = false;
                             }
 
-                            if (tHarass.Check(W.Range))
+                            if (tHarass.Check(W.Range - 30))
                             {
                                 LockCard();
 
@@ -169,7 +164,7 @@
                                 Args.Process = false;
                             }
 
-                            if (tHarass.Check(W.Range))
+                            if (tHarass.Check(W.Range - 30))
                             {
                                 StartSelecting(Cards.First);
 

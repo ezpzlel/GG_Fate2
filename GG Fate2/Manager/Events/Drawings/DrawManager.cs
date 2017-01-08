@@ -60,8 +60,8 @@
                     {
                         if ((Me.Distance(t.Position) / (Q.Speed + Q.Delay)) < (buff.EndTime - Game.Time) + 0.15)
                         {
-                            Render.Circle.DrawCircle(t.Position, 75, Color.BlueViolet);
-                            Drawing.DrawLine(Drawing.WorldToScreen(t.Position), Drawing.WorldToScreen(Me.Position), 1, Color.BlueViolet);
+                            Render.Circle.DrawCircle(t.Position, 75, Color.DodgerBlue);
+                            Drawing.DrawLine(Drawing.WorldToScreen(t.Position), Drawing.WorldToScreen(Me.Position), 1, Color.DodgerBlue);
                         }
                     }
                 }
@@ -83,19 +83,9 @@
                 Render.Circle.DrawCircle(Orbwalker.GetTarget().Position, 75, Color.GreenYellow);
             }
 
-            var target = HeroManager.Enemies.FirstOrDefault(
-                 t => t.IsValidTarget(1000));
-
-            if (target != null)
+            if (MeRed)
             {
-                var minionHarass = ObjectManager.Get<Obj_AI_Minion>().FirstOrDefault(
-                    m => m.IsValidTarget(W.Range) && m.Distance(target) < 200);
-
-                if (minionHarass != null)
-                {
-                    Render.Circle.DrawCircle(minionHarass.Position, 200, Color.BlueViolet);
-                    Drawing.DrawLine(Drawing.WorldToScreen(target.Position), Drawing.WorldToScreen(minionHarass.Position), 1, Color.BlueViolet);
-                }
+                Render.Circle.DrawCircle(Game.CursorPos, 300, Color.DodgerBlue);
             }
         }
     }
