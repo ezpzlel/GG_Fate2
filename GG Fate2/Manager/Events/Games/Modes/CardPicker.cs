@@ -30,8 +30,6 @@
 
         internal static void Init()
         {
-            var wName = Me.Spellbook.GetSpell(SpellSlot.W).Name;
-
             if (BlueKey)
             {
                 GiveCard(Cards.Blue);
