@@ -1,6 +1,7 @@
 ﻿namespace Vars
 {
     using LeagueSharp;
+    using System;
 
     public static class VarsDecla
     {
@@ -24,7 +25,10 @@
         public static bool MeBlue => ObjectManager.Player.HasBuff("bluecardpreattack");
         public static bool MeGold => ObjectManager.Player.HasBuff("goldcardpreattack");
         public static bool MeRed => ObjectManager.Player.HasBuff("redcardpreattack");
+        public static bool MeOnRed => ObjectManager.Player.Spellbook.GetSpell(SpellSlot.W).Name.Equals("RedCardLock", StringComparison.InvariantCultureIgnoreCase);
 
         public static double REACTIME = 0.15;
+
+        public static int REDRADIUS = 250;
     }
 }

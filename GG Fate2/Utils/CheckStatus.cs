@@ -12,6 +12,11 @@
                 return false;
             }
 
+            if (target.IsDead)
+            {
+                return false;
+            }
+
             if (target.Distance(ObjectManager.Player) > range)
             {
                 return false;

@@ -5,10 +5,7 @@
     using System.Linq;
     using Utils;
 
-    using OrbwalkingMode = Utils.Orbwalking.OrbwalkingMode;
-
     using static Vars.VarsDecla;
-    using static Utils.CardSelector;
 
     internal class Automated : Logic
     {
@@ -34,21 +31,6 @@
                                 Q.Cast(prediction.CastPosition);
                             }
                         }
-                    }
-                }
-            }
-
-            if (Orbwalker.ActiveMode == OrbwalkingMode.None)
-            {
-                foreach (var t in HeroManager.Enemies.Where(x => x.Check(350)))
-                {
-                    if (W.IsReadyPerfectly() && Status == SelectStatus.Ready)
-                    {
-                        StartSelecting(Cards.Yellow);
-                    }
-                    else if (Status == SelectStatus.Selecting)
-                    {
-                        JumpToCard(Cards.Yellow);
                     }
                 }
             }

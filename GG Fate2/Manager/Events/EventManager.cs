@@ -4,6 +4,7 @@
     using Games;
     using LeagueSharp;
     using LeagueSharp.Common;
+
     using Orbwalking = Utils.Orbwalking;
 
     internal class EventManager

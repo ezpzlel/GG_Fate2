@@ -86,8 +86,8 @@
     <Compile Include="Manager\Events\Games\LoopManager.cs" />
     <Compile Include="Manager\Events\Games\Modes\Automated.cs" />
     <Compile Include="Manager\Events\Games\Modes\CardPicker.cs" />
-    <Compile Include="Manager\Events\Games\Modes\Clear.cs" />
     <Compile Include="Manager\Events\Games\Modes\Combo.cs" />
+    <Compile Include="Manager\Events\Games\Modes\Harass.cs" />
     <Compile Include="Manager\Events\Games\Modes\SpellQ.cs" />
     <Compile Include="Manager\Events\Gapcloser\AntiGapcloserManager.cs" />
     <Compile Include="Manager\Events\Interrupt\InterruptManager.cs" />

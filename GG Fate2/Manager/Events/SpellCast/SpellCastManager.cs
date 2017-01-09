@@ -2,6 +2,7 @@
 {
     using LeagueSharp;
     using Utils;
+
     using static Utils.CardSelector;
 
     internal class SpellCastManager : Logic

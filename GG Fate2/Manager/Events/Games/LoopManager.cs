@@ -4,7 +4,6 @@
     using Mode;
     using System;
 
-    //Simp
     using OrbwalkingMode = Utils.Orbwalking.OrbwalkingMode;
 
     internal class LoopManager : Logic
@@ -29,10 +28,11 @@
                     break;
 
                 case OrbwalkingMode.Mixed:
+                    Harass.Init();
                     break;
 
                 case OrbwalkingMode.LaneClear:
-                    Clear.Init();
+                    //Clear.Init();
                     break;
             }
         }

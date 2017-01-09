@@ -3,8 +3,10 @@
     using LeagueSharp;
     using LeagueSharp.Common;
     using Utils;
+
     using static Utils.CardSelector;
     using static Vars.VarsDecla;
+
     using Orbwalking = Utils.Orbwalking;
 
     internal class InterruptManager : Logic

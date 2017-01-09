@@ -3,6 +3,7 @@
     using LeagueSharp.Common;
     using System.Linq;
     using Utils;
+
     using static Utils.CardSelector;
 
     internal class Combo : Logic
@@ -39,6 +40,7 @@
                         case SelectStatus.Selecting:
                             {
                                 JumpToCard(Cards.Yellow);
+
                                 break;
                             }
                     }

@@ -5,6 +5,7 @@
     using Manager.Events;
     using Manager.Menu;
     using Manager.Spells;
+
     using Orbwalking = Utils.Orbwalking;
 
     internal class Logic

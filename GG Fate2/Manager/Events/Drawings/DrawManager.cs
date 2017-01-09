@@ -6,7 +6,9 @@
     using System;
     using System.Linq;
     using Utils;
+
     using static Vars.VarsDecla;
+
     using Color = System.Drawing.Color;
 
     internal class DrawManager : Logic
@@ -25,27 +27,22 @@
                 if (R.IsReadyPerfectly())
                 {
                     Render.Circle.DrawCircle(Me.Position, R.Range, Color.FromArgb(19, 130, 234), 1);
-                }
 
-                // Block AA last-hit range
+                    // MiniMap
 
-                Render.Circle.DrawCircle(Me.Position, W.Range + 300, Color.FromArgb(111, 98, 234), 1);
-
-                // EndScene
-
-                if (R.IsReadyPerfectly())
-                {
                     Utility.DrawCircle(Me.Position, 5500, Color.FromArgb(19, 130, 234), 1);
 
-                    var targetUlt = TargetSelector.GetTarget(R.Range, Q.DamageType);
+                    // R Helper
 
-                    if (targetUlt.Check(R.Range))
+                    var rTarget = TargetSelector.GetTarget(R.Range, Q.DamageType);
+
+                    if (rTarget.Check(R.Range))
                     {
-                        var comboDMG = Q.GetDamage(targetUlt) + W.GetDamage(targetUlt) + Me.GetAutoAttackDamage(targetUlt) * 3;
+                        var comboDMG = Q.GetDamage(rTarget) + W.GetDamage(rTarget) + Me.GetAutoAttackDamage(rTarget) * 3;
 
-                        if (comboDMG > targetUlt.Health)
+                        if (comboDMG > rTarget.Health)
                         {
-                            drawText(targetUlt.ChampionName, Me.Position, Color.LightGoldenrodYellow, 20);
+                            drawText(rTarget.ChampionName, Me.Position, Color.DodgerBlue, 50);
                         }
                     }
                 }
@@ -55,8 +52,8 @@
             {
                 foreach (var t in HeroManager.Enemies.Where(x => x.Check(Q.Range)))
                 {
-                    foreach (var buff in t.Buffs.Where(b => (b.Type == BuffType.Slow && t.MoveSpeed <= 250) || b.Type == BuffType.Stun || b.Type == BuffType.Snare
-                    || b.Type == BuffType.Charm || b.Type == BuffType.Suppression || b.Type == BuffType.Knockup || t.IsChannelingImportantSpell()))
+                    foreach (var buff in t.Buffs.Where(b => b.Type == BuffType.Stun || b.Type == BuffType.Snare
+                    || b.Type == BuffType.Charm || b.Type == BuffType.Suppression || b.Type == BuffType.Knockup))
                     {
                         if ((Me.Distance(t.Position) / (Q.Speed + Q.Delay)) < (buff.EndTime - Game.Time) + REACTIME)
                         {
@@ -67,25 +64,9 @@
                 }
             }
 
-            if (MeTracker)
-            {
-                var buff = Me.GetBuff("pickacard_tracker");
-
-                var remainingTime = (buff.EndTime - Game.Time);
-
-                var remainingTimeInt = (int)Math.Round(remainingTime, MidpointRounding.ToEven);
-
-                drawText("" + remainingTimeInt, Me.Position, Color.LightYellow, 40);
-            }
-
             if (Orbwalker.GetTarget().IsValidTarget())
             {
                 Render.Circle.DrawCircle(Orbwalker.GetTarget().Position, 75, Color.GreenYellow);
-            }
-
-            if (MeRed)
-            {
-                Render.Circle.DrawCircle(Game.CursorPos, 300, Color.DodgerBlue);
             }
         }
     }

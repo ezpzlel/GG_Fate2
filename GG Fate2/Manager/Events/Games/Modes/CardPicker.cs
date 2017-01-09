@@ -1,8 +1,8 @@
 ﻿namespace GG_Fate.Manager.Events.Games.Mode
 {
-    using LeagueSharp;
     using LeagueSharp.Common;
     using Utils;
+
     using static Utils.CardSelector;
 
     internal class CardPicker : Logic

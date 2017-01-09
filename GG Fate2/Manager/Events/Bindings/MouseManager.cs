@@ -3,8 +3,10 @@
     using LeagueSharp;
     using LeagueSharp.Common;
     using Utils;
-    using static Vars.VarsDecla;
+
     using static Utils.CardSelector;
+    using static Vars.VarsDecla;
+
     using OrbwalkingMode = Utils.Orbwalking.OrbwalkingMode;
 
     internal class MouseManager : Logic

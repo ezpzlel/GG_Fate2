@@ -3,16 +3,13 @@
     using LeagueSharp;
     using LeagueSharp.Common;
     using SebbyLib;
-    using System;
     using System.Collections.Generic;
     using System.Linq;
 
-    //Utils
     using Utils;
     using static Utils.CardSelector;
     using static Vars.VarsDecla;
 
-    //Simp
     using Orbwalking = Utils.Orbwalking;
     using OrbwalkingMode = Utils.Orbwalking.OrbwalkingMode;
 
@@ -50,13 +47,15 @@
                             Args.Process = false;
                         }
 
-                        if (Status == SelectStatus.Ready || Status == SelectStatus.Selecting)
+                        if (Status == SelectStatus.Ready)
                         {
                             if (targetMixed.Check(W.Range + 200))
                             {
                                 Args.Process = false;
                             }
                         }
+
+                        // Double Tap W Logic
 
                         switch (Status)
                         {
@@ -74,24 +73,11 @@
 
                                     break;
                                 }
-                            case SelectStatus.Selecting:
-                                {
-                                    if (targetMixed.Check(W.Range))
-                                    {
-                                        LockCard();
-
-                                        if (MeAny && Orbwalking.CanAttack())
-                                        {
-                                            Me.IssueOrder(GameObjectOrder.AttackUnit, targetMixed);
-                                        }
-                                    }
-
-                                    break;
-                                }
                         }
 
                         break;
                     }
+
                 case OrbwalkingMode.LaneClear:
                     {
                         if (MeRed)
